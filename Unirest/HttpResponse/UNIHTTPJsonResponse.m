@@ -36,7 +36,10 @@
 
         UNIJsonNode* body = [[UNIJsonNode alloc] init];
         NSError * error = nil;
-        id json = [NSJSONSerialization JSONObjectWithData:[httpResponse rawBody] options:NSJSONReadingMutableLeaves error:&error];
+        id json = nil;
+        if ([httpResponse rawBody] != nil) {
+            json = [NSJSONSerialization JSONObjectWithData:[httpResponse rawBody] options:NSJSONReadingMutableLeaves error:&error];
+        }
         
         if ([json isKindOfClass:[NSArray class]]) {
             [body setArray:json];
