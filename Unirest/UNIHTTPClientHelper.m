@@ -48,6 +48,9 @@
 }
 
 + (NSString*) encodeURI:(NSString*)value {
+    if (![value isKindOfClass:[NSString class]]) {
+        return value;
+    }
 	NSString* result = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
                                                                                              NULL,
                                                                                              (CFStringRef)value,
